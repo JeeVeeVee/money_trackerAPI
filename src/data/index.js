@@ -83,7 +83,7 @@ function getKnex() {
 
 const tables = {
     user: "users",
-    event: "events"
+    event: "events",
     expense: "expenses"
 };
 
