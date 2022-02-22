@@ -11,8 +11,9 @@ const swaggerOptions = require('../swagger.config');
 var jwt = require("koa-jwt")
 var jwks = require("jwks-rsa")
 
-//const NODE_ENV = config.get('env');
-const PORT =  9000 //|| process.env.PORT;
+const NODE_ENV = config.get('env');
+console.log(config.properties)
+const PORT = config.properties.port;
 //console.log(NODE_ENV)
 const CORS_ORIGINS = ['http://localhost:3000'];
 const CORS_MAX_AGE = 3 * 60 * 60;
@@ -124,7 +125,7 @@ module.exports = async function createServer() {
         start() {
             return new Promise((resolve) => {
                 app.listen(PORT);
-                console.info(`🚀 Server listening on http://localhost:9000`);
+                console.info(`🚀 Server listening on http://localhost:${PORT}`);
                 resolve()
             })
         },

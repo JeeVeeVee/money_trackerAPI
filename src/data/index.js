@@ -7,7 +7,7 @@ async function initializeData() {
     const knexOptions = {
         client: 'sqlite3',
         connection: {
-            filename: "money_tracker1.db"
+            filename: "money_tracker.sqlite"
         },
         migrations: {
             tableName: 'knex_meta',
