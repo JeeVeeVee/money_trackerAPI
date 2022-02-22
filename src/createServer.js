@@ -68,7 +68,7 @@ module.exports = async function createServer() {
     app.use(async (ctx, next) => {
         try {
             await next();
-
+            console.log(ctx)
             if (ctx.status === 404) {
                 ctx.body = {
                     code: 'NOT_FOUND',

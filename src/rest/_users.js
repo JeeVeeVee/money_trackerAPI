@@ -13,12 +13,12 @@ const getAllUsers = async (ctx) => {
 
 const getUserById = async (ctx) => {
     console.log("i get called?")
-    //console.log("snack with id " + ctx.params.user_id + "is fetched");
-    //ctx.body = await userService.getUserById(ctx.params.user_id)
+    console.log("snack with id " + ctx.params.user_id + "is fetched");
+    ctx.body = await userService.getUserById(ctx.params.user_id)
 }
-getUserById().schema = {
+getUserById.schema = {
     params : {
-        user_id: Joi.string().uuid()
+        user_id: Joi.string()
     }
 }
 
@@ -29,7 +29,7 @@ module.exports = (app) => {
     });
 
     router.get('/', getAllUsers);
-    router.get("/:user_id", validate(getUserById().schema),  getUserById)
+    router.get("/:user_id", validate(getUserById.schema),  getUserById)
     try{
         app.use(router.routes()).use(router.allowedMethods());
     } catch (e) {
