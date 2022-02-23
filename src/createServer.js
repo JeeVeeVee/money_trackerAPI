@@ -12,7 +12,6 @@ var jwt = require("koa-jwt")
 var jwks = require("jwks-rsa")
 
 const NODE_ENV = config.get('env');
-console.log(config.properties)
 const PORT = config.properties.port;
 //console.log(NODE_ENV)
 const CORS_ORIGINS = ['http://localhost:3000'];
@@ -21,7 +20,9 @@ const CORS_MAX_AGE = 3 * 60 * 60;
 
 
 module.exports = async function createServer() {
+
     await initializeData();
+
     const app = new Koa();
 
     var jwtCheck = jwt({
@@ -35,8 +36,7 @@ module.exports = async function createServer() {
         issuer: 'https://el-jeeveevee.eu.auth0.com/',
         algorithms: ['RS256']
     });
-    app.use(jwtCheck)
-    console.log("here")
+    //app.use(jwtCheck)
 
 
 
@@ -69,7 +69,6 @@ module.exports = async function createServer() {
     app.use(async (ctx, next) => {
         try {
             await next();
-            console.log(ctx)
             if (ctx.status === 404) {
                 ctx.body = {
                     code: 'NOT_FOUND',

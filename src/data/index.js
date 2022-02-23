@@ -1,9 +1,13 @@
 const knex = require('knex')
 const {join} = require('path');
+const config = require('config');
 
 let knexInstance;
 
 async function initializeData() {
+   // db_options = config.get(database_options);
+    console.log("here")
+
     const knexOptions = {
         client: 'sqlite3',
         connection: {
